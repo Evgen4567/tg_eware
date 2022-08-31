@@ -52,7 +52,7 @@ def get_posting(posting_number: str, analytics_data: bool = True, financial_data
     return Posting(**response['result'])
 
 
-def get_warehouses_stock(limit: int = 1000000, offset: int = 0) -> WarehousesStock:
+def get_warehouses_stock(limit: int = 1000, offset: int = 0) -> WarehousesStock:
     url = f'{OZON_API_HOST}/v1/analytics/stock_on_warehouses'
     body = {"limit": limit, "offset": offset}
     logger.info(f'{body}')
