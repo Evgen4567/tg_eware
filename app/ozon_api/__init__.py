@@ -1,6 +1,6 @@
 import arrow
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from web_client import make_request
 from config import OZON_API_HOST, OZON_HEADERS
@@ -16,7 +16,9 @@ def get_posting_list(
     url = f'{OZON_API_HOST}/v2/posting/fbo/list'
     if time_to is None:
         time_to = arrow.utcnow().naive
-    since = '2021-03-01T00:00:10.083Z'
+    # since = '2021-03-01T00:00:10.083Z'
+    since_dt = datetime.now() + timedelta(days=-30)
+    since = since_dt.isoformat()[:-3] + 'Z'
     to = time_to.isoformat()[:-3] + 'Z'
     body = {
         "dir": direction,
